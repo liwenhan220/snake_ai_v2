@@ -26,7 +26,7 @@ def main():
             qs = network.predict(np.array(current_state).reshape(1, *env.observation_space)/255.0)[0]
             action = np.argmax(qs)
             new_state, reward, done = env.step(action)
-            env.render()
+            env.render(25)
             current_state = new_state
             ep_reward += reward
 

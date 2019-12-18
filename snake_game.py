@@ -69,13 +69,14 @@ class snake_game:
                                               
         return self.img
 
-    def render(self):
+    def render(self,number):
         try:
             self.img = self.update_frame()
-            cv2.imshow('snake_game',cv2.resize(self.img,(200,200)))
-            if cv2.waitKey(25) & 0xFF == ord('q'):
-                cv2.destroyAllWindows()
-                
+            cv2.imshow('snake_game',cv2.resize(self.img,(500,500)))
+            if number == 0:  
+                cv2.waitKey(1)
+            else:
+                cv2.waitKey(number)           
         except:
             pass
 

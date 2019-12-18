@@ -7,7 +7,11 @@ import numpy as np
 from collections import deque
 import random
 import cv2
+import os
 
+
+if not os.path.exists('models'):
+    os.makedir('models')
 inp = str(input('train from last? (y/n): '))
 if inp == 'y':
     MODEL = str(input('pick a model: '))
@@ -97,10 +101,9 @@ def main():
             #reward = np.sign(reward)
             replay_memory.append([current_state, action, reward, done, new_state])
             train(network, tar_net, replay_memory)
-            #env.render()
-            #cv2.imshow('game_state',cv2.resize(current_state,(500,500)))
-            #if cv2.waitKey(25) & 0xFF == ord('q'):
-                #cv2.destroyAllWindows()
+            env.render(0)
+            cv2.imshow('game_state',cv2.resize(current_state,(500,500)))
+            cv2.waitKey(1)
             current_state = new_state
             ep_reward += reward
             #if reward != 0:
